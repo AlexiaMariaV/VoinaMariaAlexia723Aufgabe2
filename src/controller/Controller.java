@@ -112,4 +112,36 @@ public class Controller {
             }
         }
     }
+
+    /**
+     * Filter teams by city.
+     * @param city
+     * @return
+     */
+    public List<Vereine> filterTeamsByCity(String city) {
+        List<Vereine> filteredList = new ArrayList<>();
+        for (Vereine vereine : teamsList) {
+            if (vereine.getCity().equals(city)) {
+                filteredList.add(vereine);
+            }
+        }
+        return filteredList;
+    }
+
+    /**
+     * Filters players by team.
+     * @param teamName
+     * @return
+     */
+    public List<Spieler> filterPlayersByTeam(String teamName) {
+        List<Spieler> filteredPlayers = new ArrayList<>();
+        for (Spieler spieler : playersList) {
+            for (Vereine vereine : teamsList) {
+                if (vereine.getPlayers().contains(spieler)) {
+                    filteredPlayers.add(spieler);
+                }
+            }
+        }
+        return filteredPlayers;
+    }
 }

@@ -22,12 +22,8 @@ public class View {
             System.out.println("7. Update Team");
             System.out.println("8. Delete Team");
             System.out.println("9. Add player to team");
-
-            // First filter
-            System.out.println("10. Filter Characters by Region");
-
-            // Second filter
-            System.out.println("11. Filter Characters by product's region");
+            System.out.println("10. Filter teams by city");
+            System.out.println("11. Filter players by team");
 
             // Sort
             System.out.println("12. Sort Products in ascending/descending order");
@@ -45,8 +41,8 @@ public class View {
                 case 7 -> updateTeam();
                 case 8 -> deleteTeam();
                 case 9 -> addPlayerToTeam();
-//                case 10 -> filterCharacterByRegion();
-//                case 11 -> filterCharacterByProductRegion();
+                case 10 -> filterTeamsByCity();
+                case 11 -> filterPlayersByTeam();
 //                case 12 -> sortCharactersProducts();
             }
         }
@@ -170,4 +166,20 @@ public class View {
         int clubId = scanner.nextInt();
         controller.addPlayerToTeam(spielerId, clubId);
     }
+
+    /**
+     * Filter teams by city.
+     */
+    private void filterTeamsByCity() {
+        System.out.println("Enter the team city");
+        String city = scanner.nextLine();
+        controller.filterTeamsByCity(city).forEach(System.out::println);
+    }
+
+    private void filterPlayersByTeam() {
+        System.out.println("Enter the team name");
+        String name = scanner.nextLine();
+        controller.filterPlayersByTeam(name).forEach(System.out::println);
+    }
+
 }
