@@ -4,6 +4,7 @@ import model.Spieler;
 import model.Vereine;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class Controller {
@@ -143,5 +144,27 @@ public class Controller {
             }
         }
         return filteredPlayers;
+    }
+
+
+    /**
+     * Sorts a teams' players in ascending/descending order by market value.
+     * @param clubId
+     * @param ascending
+     * @return
+     */
+    public List<Spieler> sortCharactersProducts(int clubId, boolean ascending) {
+        for (Vereine vereine: teamsList) {
+            if (vereine.getClubId() == clubId) {
+                List<Spieler> sortedPlayers = new ArrayList<>(vereine.getPlayers());
+                if (ascending) {
+                    sortedPlayers.sort(Comparator.comparing(Spieler::getMarketValue));
+                } else {
+                    sortedPlayers.sort(Comparator.comparing(Spieler::getMarketValue).reversed());
+                }
+                return sortedPlayers;
+            }
+        }
+        return new ArrayList<>();
     }
 }

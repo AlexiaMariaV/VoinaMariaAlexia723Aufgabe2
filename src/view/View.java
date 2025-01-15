@@ -24,12 +24,10 @@ public class View {
             System.out.println("9. Add player to team");
             System.out.println("10. Filter teams by city");
             System.out.println("11. Filter players by team");
-
-            // Sort
-            System.out.println("12. Sort Products in ascending/descending order");
+            System.out.println("12. Sort Teams Players in ascending/descending order by market value");
 
             int choice = scanner.nextInt();
-            scanner.nextLine(); // Consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1 -> addPlayer();
@@ -43,7 +41,7 @@ public class View {
                 case 9 -> addPlayerToTeam();
                 case 10 -> filterTeamsByCity();
                 case 11 -> filterPlayersByTeam();
-//                case 12 -> sortCharactersProducts();
+                case 12 -> sortTeamsPlayers();
             }
         }
     }
@@ -176,10 +174,26 @@ public class View {
         controller.filterTeamsByCity(city).forEach(System.out::println);
     }
 
+    /**
+     * Filter players by team.
+     */
     private void filterPlayersByTeam() {
         System.out.println("Enter the team name");
         String name = scanner.nextLine();
         controller.filterPlayersByTeam(name).forEach(System.out::println);
+    }
+
+    /**
+     * Sorts teams' players in ascending/descending order by market value.
+     */
+    private void sortTeamsPlayers() {
+        controller.getTeamsList().forEach(System.out::println);
+        System.out.println("Enter the team ID");
+        int clubId = scanner.nextInt();
+        scanner.nextLine();
+        System.out.println("Sort ascending? (true/false)");
+        boolean ascending = scanner.nextBoolean();
+        controller.sortCharactersProducts(clubId, ascending).forEach(System.out::println);
     }
 
 }
